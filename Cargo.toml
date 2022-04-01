@@ -1,0 +1,10 @@
+[package]
+name = "pineappler"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+markov = { version = "1.1.0" }
+lazy_static = { version =  "1.4.0" }
+teloxide = { version = "0.7", features = ["macros", "auto-send"] }
+tokio = { version =  "1.8", features = ["rt-multi-thread", "macros"] }
