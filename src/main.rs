@@ -104,7 +104,7 @@ mod handlers {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    let bot = Bot::from_env().auto_send();
+    let bot = Bot::new(std::env::var("TOKEN").expect("поставь энв вар TOKEN долбоеб")).auto_send();
 
     let handler = dptree::entry().branch(
         Update::filter_message()
