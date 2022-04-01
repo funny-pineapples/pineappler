@@ -1,0 +1,7 @@
+ersion: '3.5'
+
+services:
+  pineappler:
+    image: pineappler
+    environment:
+      - TOKEN=
