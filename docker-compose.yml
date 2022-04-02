@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   pineappler:
-    build: https://github.com/funny-pineapples/pineappler#main
+    build: https://github.com/funny-pineapples/pineappler.git#main
     image: pineappler
     environment:
         - TOKEN=${TOKEN}
