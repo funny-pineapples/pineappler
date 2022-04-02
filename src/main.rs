@@ -92,7 +92,7 @@ mod handlers {
         CHAIN
             .lock()
             .unwrap()
-            .feed_str(&m.text().unwrap().to_ascii_lowercase().trim());
+            .feed_str(&m.text().unwrap().to_lowercase().trim());
         CHAIN.lock().unwrap().save("chain")?;
 
         Ok(())
