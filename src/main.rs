@@ -11,8 +11,7 @@ use teloxide::{prelude2::*, utils::command::BotCommand};
 
 lazy_static! {
     pub static ref CHAIN: Arc<Mutex<Chain<String>>> = {
-        let chain = Chain::load("chain");
-        let chain = match chain {
+        let chain = match Chain::load("chain") {
             Ok(res) => res,
             Err(_) => {
                 println!("бля цепи нет либо она нахуй сломалась, ща новую сделаю ок");
@@ -69,8 +68,16 @@ mod commands {
 
     /// генерит пасту
     pub async fn gen_command(m: Message, bot: AutoSend<Bot>) -> BotResult {
-        let text = crate::CHAIN.lock().unwrap().generate_str();
-        bot.send_message(m.chat.id, text).await?;
+        if CHAIN.lock().unwrap().is_empty() {
+            bot.send_message(
+                m.chat.id,
+                "срать пока не из чего(((((( ну пока пообщайся чутка, а я там уже хуйню сгенерю ок",
+            )
+            .await?;
+        } else {
+            let text = CHAIN.lock().unwrap().generate_str();
+            bot.send_message(m.chat.id, text).await?;
+        }
 
         Ok(())
     }
