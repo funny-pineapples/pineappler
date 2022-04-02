@@ -11,12 +11,13 @@ use teloxide::{prelude2::*, utils::command::BotCommand};
 
 lazy_static! {
     pub static ref CHAIN: Arc<Mutex<Chain<String>>> = {
-        let chain = match Chain::load("chain") {
+        let chain = match Chain::load("./data/chain") {
             Ok(res) => res,
             Err(_) => {
                 println!("бля цепи нет либо она нахуй сломалась, ща новую сделаю ок");
                 let c = Chain::new();
-                c.save("chain").unwrap();
+                std::fs::create_dir("./data").unwrap();
+                c.save("./data/chain").unwrap();
                 c
             }
         };
@@ -93,7 +94,7 @@ mod handlers {
             .lock()
             .unwrap()
             .feed_str(&m.text().unwrap().to_lowercase().trim());
-        CHAIN.lock().unwrap().save("chain")?;
+        CHAIN.lock().unwrap().save("./data/chain")?;
 
         Ok(())
     }

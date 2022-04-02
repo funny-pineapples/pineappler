@@ -1,4 +1,4 @@
 Cargo.lock
 **/*.rs.bk
 /target
-chain
+/data/
