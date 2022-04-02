@@ -6,3 +6,5 @@ services:
     image: pineappler
     environment:
         - TOKEN=${TOKEN}
+    volumes:
+        - .:/app

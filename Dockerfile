@@ -1,5 +1,5 @@
 FROM rust:latest
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY . .
 RUN cargo install --path .
 CMD ["pineappler"]
